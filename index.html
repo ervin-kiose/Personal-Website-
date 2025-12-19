@@ -522,7 +522,7 @@
 
     <main>
         <section id="home">
-            <img src="profile.PNG" alt="Ervin Kiose" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent);">
+            <div class="profile-photo">EK</div>
             <h1 class="hero-title">Ervin Kiose</h1>
             <p class="hero-subtitle">Computer Science Graduate</p>
             <p style="color: var(--text-secondary); max-width: 600px;">
@@ -852,8 +852,8 @@
             typingIndicator.classList.add('active');
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            // TODO: Replace with your N8N webhook URL
-            const N8N_WEBHOOK_URL = 'YOUR_N8N_WEBHOOK_URL_HERE';
+            // Replace this URL with your actual N8N webhook URL
+            const N8N_WEBHOOK_URL = 'https://primary-production-d90f.up.railway.app/webhook/2f96b0d3-4e1b-4638-8013-777f941b7ace/chat';
 
             try {
                 const response = await fetch(N8N_WEBHOOK_URL, {
@@ -869,8 +869,9 @@
                 // Hide typing indicator
                 typingIndicator.classList.remove('active');
                 
-                // Add bot response
-                addMessage(data.response || data.message || 'Sorry, I encountered an error.', 'bot');
+                // Add bot response - adjust based on your N8N response structure
+                const botMessage = data.response || data.output || data.message || 'Sorry, I encountered an error.';
+                addMessage(botMessage, 'bot');
             } catch (error) {
                 typingIndicator.classList.remove('active');
                 addMessage('Sorry, I\'m currently unavailable. Please try again later or contact me directly.', 'bot');
