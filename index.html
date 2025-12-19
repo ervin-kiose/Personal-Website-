@@ -666,9 +666,37 @@
     <script type="module">
         import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
+        //createChat({
+        //    webhookUrl: 'https://primary-production-d90f.up.railway.app/webhook/a9a36058-ee75-4d6a-a3d7-433e252e8b50/chat'
+        //});
         createChat({
-            webhookUrl: 'https://primary-production-d90f.up.railway.app/webhook/a9a36058-ee75-4d6a-a3d7-433e252e8b50/chat'
-        });
+	webhookUrl: 'https://primary-production-d90f.up.railway.app/webhook/a9a36058-ee75-4d6a-a3d7-433e252e8b50/chat',
+	webhookConfig: {
+		method: 'POST',
+		headers: {}
+	},
+	target: '#n8n-chat',
+	mode: 'window',
+	chatInputKey: 'chatInput',
+	chatSessionKey: 'sessionId',
+	loadPreviousSession: true,
+	metadata: {},
+	showWelcomeScreen: false,
+	defaultLanguage: 'en',
+	initialMessages: [
+        "Hi there! My name is Tod Ervin's personal assistant. How can I assist you today?}"
+	],
+	i18n: {
+		en: {
+			title: 'Hi there! 👋',
+			subtitle: "Start a chat. We're here to help you 24/7.",
+			footer: '',
+			getStarted: 'New Conversation',
+			inputPlaceholder: 'Type your question..',
+		},
+	},
+	enableStreaming: false,
+});
     </script>
 </body>
 </html>
