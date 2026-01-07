@@ -14,6 +14,11 @@
             box-sizing: border-box;
         }
 
+        html {
+            height: 100%;
+            background: var(--bg-primary);
+        }
+
         :root {
             --bg-primary: #0a0a0a;
             --bg-secondary: #141414;
@@ -153,27 +158,29 @@
         /* Main Content */
         main {
             margin-top: 70px;
+            min-height: 100vh;
+            background: var(--bg-primary);
         }
 
         section {
             width: 100%;
-            padding: 4rem 2rem;
+            padding: 6rem 2rem;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
-            background-attachment: fixed;
-            background-size: 100% 100%;
             position: relative;
         }
 
         section > * {
             max-width: 1200px;
             width: 100%;
+            position: relative;
+            z-index: 1;
         }
 
         #about {
-            background: linear-gradient(180deg, 
+            background: linear-gradient(to bottom, 
                 #0a0a0a 0%, 
                 #0c0d1a 15%,
                 #0d1020 30%,
@@ -182,11 +189,10 @@
                 #0c0d1a 75%,
                 #0b0b12 90%,
                 #0a0a0a 100%);
-            padding: 6rem 2rem;
         }
 
         #services {
-            background: linear-gradient(180deg, 
+            background: linear-gradient(to bottom, 
                 #0a0a0a 0%,
                 #0a0f14 15%,
                 #0b1218 30%,
@@ -195,11 +201,10 @@
                 #0a0f14 75%,
                 #0a0c10 90%,
                 #0a0a0a 100%);
-            padding: 6rem 2rem;
         }
 
         #projects {
-            background: linear-gradient(180deg, 
+            background: linear-gradient(to bottom, 
                 #0a0a0a 0%,
                 #0c0d1a 15%,
                 #0d1020 30%,
@@ -208,36 +213,46 @@
                 #0c0d1a 75%,
                 #0b0b12 90%,
                 #0a0a0a 100%);
-            padding: 6rem 2rem;
         }
 
         #contact {
-            background: linear-gradient(180deg, 
+            background: linear-gradient(to bottom, 
                 #0a0a0a 0%,
-                #0a0f14 10%,
-                #0b1218 25%,
-                #0b141c 40%,
-                #0c1620 55%,
+                #0a0e12 7%,
+                #0a0f14 14%,
+                #0b1116 21%,
+                #0b1218 28%,
+                #0b131a 35%,
+                #0b141c 42%,
+                #0c151e 49%,
+                #0c1620 56%,
+                #0c1722 63%,
                 #0c1822 70%,
-                #0d1a24 85%,
-                #0d1c26 100%);
-            padding: 6rem 2rem 8rem 2rem;
-            min-height: auto;
+                #0c1924 77%,
+                #0d1a24 84%,
+                #0d1c26 91%,
+                #0d1e28 100%);
+            padding: 6rem 2rem;
+            padding-bottom: 8rem;
         }
 
         #experience {
-            background: linear-gradient(180deg,
+            background: linear-gradient(to bottom,
                 #0a0a0a 0%,
                 #0b0d14 20%,
                 #0c1018 40%,
                 #0c1220 60%,
                 #0b0d14 80%,
                 #0a0a0a 100%);
-            padding: 6rem 2rem;
         }
 
         #home {
             padding: 6rem 2rem;
+        }
+
+        /* Ensure section backgrounds extend fully */
+        section::after {
+            display: none;
         }
 
         /* Parallax Effect */
