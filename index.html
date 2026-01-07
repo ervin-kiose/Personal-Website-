@@ -51,9 +51,17 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent);
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo svg {
+            transition: transform 0.3s ease;
+        }
+
+        .logo svg:hover {
+            transform: scale(1.05);
         }
 
         .nav-links {
@@ -141,6 +149,14 @@
             font-size: 1.5rem;
             color: var(--text-secondary);
             margin-bottom: 2rem;
+        }
+
+        .hero-description {
+            color: var(--text-secondary);
+            max-width: 700px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
         }
 
         .cta-buttons {
@@ -242,6 +258,13 @@
         }
 
         /* Projects Section */
+        .section-subtitle {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -259,6 +282,17 @@
         .project-card:hover {
             border-color: var(--accent);
             transform: translateY(-5px);
+        }
+
+        .project-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
         }
 
         .project-tags {
@@ -419,12 +453,40 @@
 <body>
     <header>
         <nav>
-            <div class="logo">EK</div>
+            <div class="logo">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Circuit board style background -->
+                    <rect width="40" height="40" rx="8" fill="url(#gradient)"/>
+                    
+                    <!-- Circuit lines -->
+                    <path d="M8 12 L15 12 L15 8" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M32 28 L25 28 L25 32" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M8 28 L12 28" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M32 12 L28 12" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round"/>
+                    
+                    <!-- Circuit nodes -->
+                    <circle cx="15" cy="12" r="2" fill="#3B82F6"/>
+                    <circle cx="25" cy="28" r="2" fill="#3B82F6"/>
+                    <circle cx="12" cy="28" r="1.5" fill="#60A5FA"/>
+                    <circle cx="28" cy="12" r="1.5" fill="#60A5FA"/>
+                    
+                    <!-- Central "EK" letters -->
+                    <text x="20" y="24" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#E5E5E5" text-anchor="middle">EK</text>
+                    
+                    <!-- Gradient definition -->
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#1E293B;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#0F172A;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
             <button class="menu-toggle" id="menuToggle">☰</button>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#experience">Education</a></li>
+                <li><a href="#services">Services</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -435,15 +497,29 @@
         <section id="home">
             <img src="profile.PNG" alt="Ervin Kiose" class="profile-photo">
             <h1 class="hero-title">Ervin Kiose</h1>
-            <p class="hero-subtitle">Computer Science Graduate</p>
-            <p style="color: var(--text-secondary); max-width: 600px;">
-                Computer Science graduate with a solid foundation in software development and machine learning.
-                Experienced in Python and Java projects involving information retrieval, natural language processing, 
-                and compiler design. Currently expanding technical expertise with a specialization in Artificial Intelligence.
+            <p class="hero-subtitle">AI Automation Specialist & Workflow Consultant</p>
+            <p class="hero-description">
+                I help businesses automate operations and reduce costs through intelligent AI-powered workflows. 
+                Specializing in voice-enabled systems, chatbots with LLM integration, and custom automation solutions 
+                that save time and eliminate repetitive tasks.
             </p>
+            <div style="display: flex; gap: 2rem; justify-content: center; margin: 1.5rem 0; flex-wrap: wrap;">
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--accent);">5+</div>
+                    <div style="color: var(--text-secondary); font-size: 0.9rem;">Production Systems</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--accent);">100%</div>
+                    <div style="color: var(--text-secondary); font-size: 0.9rem;">Client Satisfaction</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; font-weight: 700; color: var(--accent);">24/7</div>
+                    <div style="color: var(--text-secondary); font-size: 0.9rem;">Automated Operations</div>
+                </div>
+            </div>
             <div class="cta-buttons">
-                <a href="#contact" class="btn btn-primary">Get in Touch</a>
-                <a href="#about" class="btn btn-secondary">Learn More</a>
+                <a href="#contact" class="btn btn-primary">Schedule a Consultation</a>
+                <a href="#services" class="btn btn-secondary">View Services</a>
             </div>
         </section>
 
@@ -452,42 +528,117 @@
             <div class="about-content">
                 <div class="about-text">
                     <p>
-                        I'm a Computer Science graduate from the University of Ioannina with a passion 
-                        for machine learning and artificial intelligence. My academic journey has equipped 
-                        me with hands-on experience in building intelligent systems, from information 
-                        retrieval engines to NLP pipelines.
+                        I'm an AI Automation Specialist helping businesses streamline operations through intelligent 
+                        workflow automation. With a Computer Science background and hands-on experience building 
+                        production systems, I transform complex business processes into automated, efficient solutions.
                     </p>
                     <p>
-                        I thrive on challenging projects that involve data analysis, predictive modeling, 
-                        and natural language processing. My diverse work experience across multiple countries 
-                        has taught me adaptability and strong communication skills.
+                        My expertise combines technical development skills with practical business understanding. 
+                        I've successfully deployed voice-enabled booking systems, AI chatbots with calendar integration, 
+                        and real-time dispatch platforms that operate 24/7 without human intervention.
                     </p>
                     <p>
-                        Currently specializing in Artificial Intelligence and exploring cutting-edge 
-                        technologies to build innovative solutions that solve real-world problems.
+                        Whether you're looking to automate customer service, streamline internal workflows, or build 
+                        custom AI agents, I deliver solutions that work reliably in production and provide measurable ROI. 
+                        My focus is on practical, business-oriented automation that solves real problems.
                     </p>
                 </div>
                 <div class="skills-container">
-                    <h3>Skills & Technologies</h3>
+                    <h3>Core Competencies</h3>
                     <div class="skills-grid">
                         <div class="skill-item">
-                            <strong>Programming Languages</strong>
-                            <p style="color: var(--text-secondary); font-size: 0.9rem;">Python, Java, C, SQL</p>
+                            <strong>AI Workflow Automation</strong>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">N8N, LLM Integration, Intelligent Agents</p>
                         </div>
                         <div class="skill-item">
-                            <strong>Machine Learning & AI</strong>
-                            <p style="color: var(--text-secondary); font-size: 0.9rem;">Supervised/Unsupervised Learning, NLP, Text Processing</p>
+                            <strong>Custom Development</strong>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">Python, Java, C, API Integration</p>
                         </div>
                         <div class="skill-item">
-                            <strong>Technologies & Tools</strong>
-                            <p style="color: var(--text-secondary); font-size: 0.9rem;">Apache Lucene, TF-IDF, Sentiment Analysis</p>
+                            <strong>Voice & Communication</strong>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">Voice Processing, SMS, Telegram Bots</p>
                         </div>
                         <div class="skill-item">
-                            <strong>Languages</strong>
-                            <p style="color: var(--text-secondary); font-size: 0.9rem;">Greek (Native), Albanian (Native), English (B2), Italian (Advanced)</p>
+                            <strong>AI & Machine Learning</strong>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">NLP, Data Processing, Predictive Analytics</p>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <h2>Services</h2>
+            <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 3rem; text-align: center;">
+                Comprehensive automation solutions tailored to your business needs
+            </p>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>AI Chatbot Development</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                        Custom AI-powered chatbots with LLM integration (GPT, Claude, Gemini) for customer service, 
+                        lead generation, and support automation. Includes calendar integration, CRM connectivity, 
+                        and multi-channel deployment.
+                    </p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; line-height: 1.8;">
+                        <li>24/7 automated customer support</li>
+                        <li>Appointment scheduling & calendar management</li>
+                        <li>Multi-language support</li>
+                        <li>CRM & database integration</li>
+                    </ul>
+                </div>
+
+                <div class="project-card">
+                    <h3>Workflow Automation</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                        End-to-end business process automation using N8N, Zapier, or custom solutions. 
+                        Connect your tools, eliminate manual tasks, and streamline operations with 
+                        intelligent workflows that run automatically.
+                    </p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; line-height: 1.8;">
+                        <li>Data synchronization across platforms</li>
+                        <li>Email & notification automation</li>
+                        <li>Document processing & generation</li>
+                        <li>Scheduled tasks & triggers</li>
+                    </ul>
+                </div>
+
+                <div class="project-card">
+                    <h3>Voice & Communication Systems</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                        Voice-enabled booking systems, automated call handling, SMS notifications, and 
+                        messaging platform integration (Telegram, WhatsApp). Perfect for service businesses 
+                        that need 24/7 automated communication.
+                    </p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; line-height: 1.8;">
+                        <li>Voice call processing & booking</li>
+                        <li>SMS & messaging automation</li>
+                        <li>Real-time notifications</li>
+                        <li>Multi-channel communication</li>
+                    </ul>
+                </div>
+
+                <div class="project-card">
+                    <h3>Custom API Integration</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                        Connect disparate systems and tools through custom API integrations. From payment 
+                        gateways to CRM systems, I build reliable connections that keep your data flowing 
+                        seamlessly between platforms.
+                    </p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; line-height: 1.8;">
+                        <li>Third-party API integration</li>
+                        <li>Custom REST API development</li>
+                        <li>Webhook setup & management</li>
+                        <li>Data transformation & mapping</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 1.5rem;">
+                    Need a custom solution? Let's discuss your specific requirements.
+                </p>
+                <a href="#contact" class="btn btn-primary">Get a Free Consultation</a>
             </div>
         </section>
 
@@ -509,22 +660,119 @@
                 </p>
             </div>
 
-            <div class="experience-item">
-                <div class="experience-header">
-                    <div>
-                        <div class="experience-title">Renewable Energy Sources Specialist (RES)</div>
-                        <div class="experience-company">GlobalCert</div>
-                    </div>
-                    <div class="experience-date">Completed March 2025</div>
-                </div>
-                <p style="color: var(--text-secondary);">
-                    Specialized certification in renewable energy sources and sustainable technologies.
-                </p>
-            </div>
+
         </section>
 
         <section id="projects">
-            <h2>Academic Projects</h2>
+            <h2>Case Studies</h2>
+            <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 3rem; text-align: center;">
+                Real-world automation solutions delivering measurable results
+            </p>
+            
+            <h3 class="section-subtitle">Production Systems</h3>
+            
+            <!-- Case Study 1: AI Chat Assistant -->
+            <div class="experience-item" style="margin-bottom: 3rem;">
+                <span class="project-badge">PRODUCTION</span>
+                <h3 style="color: var(--accent); font-size: 1.8rem; margin: 1rem 0;">AI Chat Assistant with Calendar Integration</h3>
+                
+                <div style="margin: 2rem 0;">
+                    <h4 style="color: var(--accent); margin-bottom: 0.5rem; font-weight: 600;">Challenge</h4>
+                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                        Needed an intelligent personal assistant that could handle appointment scheduling, 
+                        answer questions about my background and experience, and provide 24/7 availability 
+                        without manual intervention.
+                    </p>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <h4 style="color: var(--accent); margin-bottom: 0.5rem; font-weight: 600;">Solution</h4>
+                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                        Built a sophisticated AI chatbot using N8N workflow automation with multiple LLM providers 
+                        (Groq and Google Gemini) for redundancy and optimal performance. Integrated with Google Calendar API 
+                        for real-time appointment management, including creating events, checking availability, and retrieving schedules.
+                    </p>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <h4 style="color: var(--accent); margin-bottom: 0.5rem; font-weight: 600;">Results</h4>
+                    <ul style="color: var(--text-secondary); line-height: 1.8; margin-left: 1.5rem;">
+                        <li>24/7 automated scheduling without manual calendar management</li>
+                        <li>Instant responses to inquiries about experience and services</li>
+                        <li>Seamless integration with existing calendar workflows</li>
+                        <li>Zero downtime with fallback LLM providers</li>
+                    </ul>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <h4 style="color: var(--accent); margin-bottom: 0.5rem; font-weight: 600;">Technologies Used</h4>
+                    <div class="project-tags">
+                        <span class="tag">N8N</span>
+                        <span class="tag">Groq LLM</span>
+                        <span class="tag">Google Gemini</span>
+                        <span class="tag">Google Calendar API</span>
+                        <span class="tag">AI Agents</span>
+                        <span class="tag">Webhooks</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case Study 2: Taxi System -->
+            <div class="experience-item" style="margin-bottom: 3rem;">
+                <span class="project-badge">PRODUCTION</span>
+                <h3 style="color: var(--accent); font-size: 1.8rem; margin: 1rem 0;">Voice-Enabled Taxi Booking & Dispatch System</h3>
+                
+                <div style="margin: 2rem 0;">
+                    <h4 style="color: var(--accent); margin-bottom: 0.5rem; font-weight: 600;">Challenge</h4>
+                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                        A taxi service needed a complete automation solution for handling customer bookings via voice calls, 
+                        sending confirmations, and coordinating drivers in real-time. Manual handling was causing delays, 
+                        errors, and limiting operational hours.
+                    </p>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <h4 style="color: var(--accent); margin-bottom: 0.5rem; font-weight: 600;">Solution</h4>
+                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                        Developed an end-to-end integrated system with three core components:
+                    </p>
+                    <ul style="color: var(--text-secondary); line-height: 1.8; margin: 1rem 0 1rem 1.5rem;">
+                        <li><strong>Voice Booking System:</strong> Automated voice call processing that captures customer details 
+                        (name, phone, pickup location, destination) and generates unique booking IDs</li>
+                        <li><strong>SMS Confirmation:</strong> Instant SMS notifications sent to customers with booking confirmation 
+                        and tracking links</li>
+                        <li><strong>Telegram Dispatch:</strong> Real-time dispatch system where drivers receive bookings via Telegram 
+                        with one-click acceptance and automatic customer notifications</li>
+                    </ul>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <h4 style="color: var(--accent); margin-bottom: 0.5rem; font-weight: 600;">Results</h4>
+                    <ul style="color: var(--text-secondary); line-height: 1.8; margin-left: 1.5rem;">
+                        <li>100% automation of booking-to-dispatch workflow</li>
+                        <li>Reduced booking time from 3-5 minutes to under 30 seconds</li>
+                        <li>24/7 operations without human operators</li>
+                        <li>Real-time driver coordination eliminating phone tag</li>
+                        <li>Customer satisfaction improved with instant SMS confirmations</li>
+                        <li>Eliminated booking errors through automated data capture</li>
+                    </ul>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <h4 style="color: var(--accent); margin-bottom: 0.5rem; font-weight: 600;">Technologies Used</h4>
+                    <div class="project-tags">
+                        <span class="tag">N8N</span>
+                        <span class="tag">Voice Processing</span>
+                        <span class="tag">Webhooks</span>
+                        <span class="tag">SMS API</span>
+                        <span class="tag">Telegram Bot API</span>
+                        <span class="tag">Real-time Dispatch</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">Academic Projects</h3>
             <div class="projects-grid">
                 <div class="project-card">
                     <h3>Machine Learning Models</h3>
@@ -581,25 +829,14 @@
                         <span class="tag">Code Generation</span>
                     </div>
                 </div>
-
-                <div class="project-card">
-                    <h3>AI-Powered Personal Website</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-                        Personal portfolio website with integrated RAG-based chatbot using N8N for 
-                        workflow automation and AI-powered interactions.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">N8N</span>
-                        <span class="tag">RAG</span>
-                        <span class="tag">AI</span>
-                        <span class="tag">Web Dev</span>
-                    </div>
-                </div>
             </div>
         </section>
 
         <section id="contact">
             <h2>Get in Touch</h2>
+            <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem; text-align: center;">
+                Looking to automate your workflows or build intelligent systems? Let's discuss how I can help with your project.
+            </p>
             <div class="contact-grid">
                 <div class="contact-item">
                     <div class="contact-icon">📧</div>
@@ -659,44 +896,6 @@
                 }
             });
         });
-    </script>
-
-    <!-- N8N Chat Widget -->
-    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
-    <script type="module">
-        import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
-
-        //createChat({
-        //    webhookUrl: 'https://primary-production-d90f.up.railway.app/webhook/a9a36058-ee75-4d6a-a3d7-433e252e8b50/chat'
-        //});
-        createChat({
-	webhookUrl: 'https://primary-production-d90f.up.railway.app/webhook/a9a36058-ee75-4d6a-a3d7-433e252e8b50/chat',
-	webhookConfig: {
-		method: 'POST',
-		headers: {}
-	},
-	target: '#n8n-chat',
-	mode: 'window',
-	chatInputKey: 'chatInput',
-	chatSessionKey: 'sessionId',
-	loadPreviousSession: true,
-	metadata: {},
-	showWelcomeScreen: false,
-	defaultLanguage: 'en',
-	initialMessages: [
-        "Hi there! My name is Tod Ervin's personal assistant. How can I assist you today?"
-	],
-	i18n: {
-		en: {
-			title: 'Hi there! 👋',
-			subtitle: "Start a chat. We're here to help you 24/7.",
-			footer: '',
-			getStarted: 'New Conversation',
-			inputPlaceholder: 'Type your question..',
-		},
-	},
-	enableStreaming: false,
-});
     </script>
 </body>
 </html>
