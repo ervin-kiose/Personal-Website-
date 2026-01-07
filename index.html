@@ -56,11 +56,14 @@
             cursor: pointer;
         }
 
-        .logo svg {
+        .logo img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
             transition: transform 0.3s ease;
         }
 
-        .logo svg:hover {
+        .logo img:hover {
             transform: scale(1.05);
         }
 
@@ -454,33 +457,7 @@
     <header>
         <nav>
             <div class="logo">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Circuit board style background -->
-                    <rect width="40" height="40" rx="8" fill="url(#gradient)"/>
-                    
-                    <!-- Circuit lines -->
-                    <path d="M8 12 L15 12 L15 8" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round"/>
-                    <path d="M32 28 L25 28 L25 32" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round"/>
-                    <path d="M8 28 L12 28" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round"/>
-                    <path d="M32 12 L28 12" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round"/>
-                    
-                    <!-- Circuit nodes -->
-                    <circle cx="15" cy="12" r="2" fill="#3B82F6"/>
-                    <circle cx="25" cy="28" r="2" fill="#3B82F6"/>
-                    <circle cx="12" cy="28" r="1.5" fill="#60A5FA"/>
-                    <circle cx="28" cy="12" r="1.5" fill="#60A5FA"/>
-                    
-                    <!-- Central "EK" letters -->
-                    <text x="20" y="24" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#E5E5E5" text-anchor="middle">EK</text>
-                    
-                    <!-- Gradient definition -->
-                    <defs>
-                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#1E293B;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#0F172A;stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                </svg>
+                <img src="logo.png" alt="Ervin Kiose Logo">
             </div>
             <button class="menu-toggle" id="menuToggle">☰</button>
             <ul class="nav-links" id="navLinks">
