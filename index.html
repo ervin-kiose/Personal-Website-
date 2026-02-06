@@ -233,58 +233,6 @@
             display: none;
         }
 
-        /* Parallax Effect */
-        .parallax-layer {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-        }
-
-        .parallax-bg {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.15;
-        }
-
-        .parallax-bg-1 {
-            background: var(--accent);
-            top: 20%;
-            left: 10%;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        .parallax-bg-2 {
-            background: var(--cyan);
-            top: 60%;
-            right: 15%;
-            animation: float 25s ease-in-out infinite reverse;
-        }
-
-        .parallax-bg-3 {
-            background: var(--cyan-light);
-            bottom: 20%;
-            left: 50%;
-            animation: float 30s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translate(0, 0) scale(1);
-            }
-            33% {
-                transform: translate(30px, -30px) scale(1.1);
-            }
-            66% {
-                transform: translate(-20px, 20px) scale(0.9);
-            }
-        }
-
         h2 {
             font-size: 2.5rem;
             margin-bottom: 2rem;
@@ -1080,13 +1028,6 @@
         </div>
     </div>
 
-    <!-- Parallax Background Elements -->
-    <div class="parallax-layer">
-        <div class="parallax-bg parallax-bg-1"></div>
-        <div class="parallax-bg parallax-bg-2"></div>
-        <div class="parallax-bg parallax-bg-3"></div>
-    </div>
-
     <header>
         <nav>
             <a href="#home" class="logo">
@@ -1681,41 +1622,15 @@
             }
         });
 
-        // Parallax Scrolling Effect
+        // Scroll handler for active navigation
         let ticking = false;
 
         window.addEventListener('scroll', () => {
             if (!ticking) {
                 window.requestAnimationFrame(() => {
-                    const scrolled = window.pageYOffset;
-
-                    // Parallax for background blobs
-                    const bg1 = document.querySelector('.parallax-bg-1');
-                    const bg2 = document.querySelector('.parallax-bg-2');
-                    const bg3 = document.querySelector('.parallax-bg-3');
-
-                    if (bg1) bg1.style.transform = `translate(${scrolled * 0.1}px, ${scrolled * 0.15}px)`;
-                    if (bg2) bg2.style.transform = `translate(${-scrolled * 0.08}px, ${scrolled * 0.12}px)`;
-                    if (bg3) bg3.style.transform = `translate(${scrolled * 0.05}px, ${-scrolled * 0.1}px)`;
-
-                    // Parallax for section backgrounds (subtle)
-                    const sections = document.querySelectorAll('section');
-                    sections.forEach((section, index) => {
-                        const rect = section.getBoundingClientRect();
-                        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-
-                        if (isVisible) {
-                            const sectionScroll = (rect.top - window.innerHeight) * 0.3;
-                            section.style.backgroundPosition = `center ${sectionScroll}px`;
-                        }
-                    });
-
-                    // Active navigation highlighting
                     updateActiveNavLink();
-
                     ticking = false;
                 });
-
                 ticking = true;
             }
         });
