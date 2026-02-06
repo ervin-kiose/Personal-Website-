@@ -1576,8 +1576,8 @@
                     if (distance < maxDistance) {
                         // Gentle attraction force
                         const force = (maxDistance - distance) / maxDistance;
-                        const forceX = (dx / distance) * force * 0.15;
-                        const forceY = (dy / distance) * force * 0.15;
+                        const forceX = (dx / distance) * force * 0.225;
+                        const forceY = (dy / distance) * force * 0.225;
 
                         this.speedX = this.baseSpeedX + forceX;
                         this.speedY = this.baseSpeedY + forceY;
