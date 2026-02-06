@@ -363,7 +363,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: radial-gradient(ellipse at center, 
+            background: radial-gradient(ellipse at center,
                 #0e1530 0%,
                 #0d1428 15%,
                 #0c1320 30%,
@@ -375,6 +375,15 @@
             background-size: 100% 100%;
             position: relative;
             overflow: hidden;
+        }
+
+        #particles-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
         }
 
         #home::before {
@@ -1176,6 +1185,7 @@
 
     <main>
         <section id="home">
+            <canvas id="particles-canvas"></canvas>
             <img src="profile.png" alt="Ervin Kiose" class="profile-photo">
             <h1 class="hero-title">Ervin Kiose</h1>
             <p class="hero-subtitle">Computer Engineering Graduate | Automation Specialist</p>
@@ -1646,6 +1656,111 @@
             setTimeout(() => {
                 loader.classList.add('hidden');
             }, 500);
+        });
+
+        // Particle Network Animation
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particlesArray = [];
+        let animationId;
+
+        // Set canvas size
+        function resizeCanvas() {
+            const homeSection = document.getElementById('home');
+            canvas.width = homeSection.offsetWidth;
+            canvas.height = homeSection.offsetHeight;
+        }
+
+        resizeCanvas();
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            initParticles();
+        });
+
+        // Particle class
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5 + 0.3;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                // Wrap around edges
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(6, 182, 212, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Initialize particles
+        function initParticles() {
+            particlesArray = [];
+            const numberOfParticles = Math.floor((canvas.width * canvas.height) / 15000);
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        // Connect particles with lines
+        function connectParticles() {
+            for (let i = 0; i < particlesArray.length; i++) {
+                for (let j = i + 1; j < particlesArray.length; j++) {
+                    const dx = particlesArray[i].x - particlesArray[j].x;
+                    const dy = particlesArray[i].y - particlesArray[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 120) {
+                        const opacity = (1 - distance / 120) * 0.3;
+                        ctx.strokeStyle = `rgba(6, 182, 212, ${opacity})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                        ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        // Animation loop
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let particle of particlesArray) {
+                particle.update();
+                particle.draw();
+            }
+
+            connectParticles();
+            animationId = requestAnimationFrame(animateParticles);
+        }
+
+        // Start animation
+        initParticles();
+        animateParticles();
+
+        // Pause animation when not visible for performance
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                cancelAnimationFrame(animationId);
+            } else {
+                animateParticles();
+            }
         });
 
         // Parallax Scrolling Effect
