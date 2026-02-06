@@ -140,12 +140,13 @@
         }
 
         .nav-links a {
-            color: var(--text-secondary);
+            color: var(--cyan);
             text-decoration: none;
             transition: color 0.3s;
             font-weight: 500;
             position: relative;
             padding-bottom: 4px;
+            font-size: 1.2rem;
         }
 
         .nav-links a:hover {
@@ -237,9 +238,8 @@
             font-size: 2.5rem;
             margin-bottom: 2rem;
             color: var(--cyan);
-            text-shadow: 0 0 20px rgba(6, 182, 212, 0.8),
-                         0 0 40px rgba(6, 182, 212, 0.6),
-                         0 0 60px rgba(6, 182, 212, 0.4);
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.4),
+                         0 0 20px rgba(6, 182, 212, 0.3);
         }
 
         h3 {
@@ -289,9 +289,12 @@
             border-radius: 50%;
             margin-bottom: 2rem;
             object-fit: cover;
-            border: 3px solid var(--accent);
+            border: 3px solid var(--cyan);
             transition: transform 0.3s ease;
             will-change: transform;
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.8),
+                        0 0 60px rgba(6, 182, 212, 0.6),
+                        0 0 90px rgba(6, 182, 212, 0.4);
         }
 
         .hero-title {
@@ -301,6 +304,8 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.8))
+                    drop-shadow(0 0 40px rgba(6, 182, 212, 0.6));
         }
 
         .hero-subtitle {
@@ -324,6 +329,16 @@
             border: 1px solid var(--border);
         }
 
+        .metric-label {
+            color: var(--cyan);
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.6);
+        }
+
+        .section-intro {
+            color: var(--cyan);
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+        }
+
         .cta-buttons {
             display: flex;
             gap: 1rem;
@@ -345,23 +360,33 @@
         .btn-primary {
             background: var(--accent);
             color: white;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.5),
+                        0 0 40px rgba(6, 182, 212, 0.3);
         }
 
         .btn-primary:hover {
             background: var(--accent-hover);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(6, 182, 212, 0.4);
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.8),
+                        0 0 60px rgba(6, 182, 212, 0.5),
+                        0 10px 25px rgba(6, 182, 212, 0.4);
         }
 
         .btn-secondary {
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            border: 1px solid var(--border);
+            background: var(--accent);
+            color: white;
+            border: 1px solid var(--cyan);
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.5),
+                        0 0 40px rgba(6, 182, 212, 0.3);
         }
 
         .btn-secondary:hover {
+            background: var(--accent-hover);
             border-color: var(--cyan);
-            box-shadow: 0 5px 15px rgba(6, 182, 212, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.8),
+                        0 0 60px rgba(6, 182, 212, 0.5),
+                        0 5px 15px rgba(6, 182, 212, 0.4);
         }
 
         /* About Section */
@@ -1101,15 +1126,15 @@
             <div style="display: flex; gap: 2rem; justify-content: center; margin: 1.5rem 0; flex-wrap: wrap;">
                 <div style="text-align: center;">
                     <div style="font-size: 2rem; font-weight: 700; color: var(--accent);">10+</div>
-                    <div style="color: var(--text-secondary); font-size: 0.9rem;">Production Systems</div>
+                    <div class="metric-label" style="font-size: 0.9rem;">Production Systems</div>
                 </div>
                 <div style="text-align: center;">
                     <div style="font-size: 2rem; font-weight: 700; color: var(--accent);">100%</div>
-                    <div style="color: var(--text-secondary); font-size: 0.9rem;">Client Satisfaction</div>
+                    <div class="metric-label" style="font-size: 0.9rem;">Client Satisfaction</div>
                 </div>
                 <div style="text-align: center;">
                     <div style="font-size: 2rem; font-weight: 700; color: var(--accent);">24/7</div>
-                    <div style="color: var(--text-secondary); font-size: 0.9rem;">Automated Operations</div>
+                    <div class="metric-label" style="font-size: 0.9rem;">Automated Operations</div>
                 </div>
             </div>
             <div class="cta-buttons">
@@ -1166,7 +1191,7 @@
 
         <section id="services">
             <h2>Services</h2>
-            <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 3rem; text-align: center;">
+            <p class="section-intro" style="font-size: 1.1rem; margin-bottom: 3rem; text-align: center;">
                 Comprehensive automation solutions tailored to your business needs
             </p>
             <div class="projects-grid">
@@ -1232,7 +1257,7 @@
             </div>
             
             <div style="text-align: center; margin-top: 3rem;">
-                <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 1.5rem;">
+                <p class="section-intro" style="font-size: 1.1rem; margin-bottom: 1.5rem;">
                     Need a custom solution? Let's discuss your specific requirements.
                 </p>
                 <a href="#contact" class="btn btn-primary">Get a Free Consultation</a>
@@ -1292,7 +1317,7 @@
 
         <section id="projects">
             <h2>Case Studies</h2>
-            <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 3rem; text-align: center;">
+            <p class="section-intro" style="font-size: 1.1rem; margin-bottom: 3rem; text-align: center;">
                 Real-world automation solutions delivering measurable results
             </p>
             
@@ -1501,7 +1526,7 @@
 
         <section id="contact">
             <h2>Get in Touch</h2>
-            <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem; text-align: center;">
+            <p class="section-intro" style="font-size: 1.1rem; margin-bottom: 2rem; text-align: center;">
                 Looking to automate your workflows or build intelligent systems? Let's discuss how I can help with your project.
             </p>
             <div class="contact-grid">
