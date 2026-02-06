@@ -144,10 +144,27 @@
             text-decoration: none;
             transition: color 0.3s;
             font-weight: 500;
+            position: relative;
+            padding-bottom: 4px;
         }
 
         .nav-links a:hover {
             color: var(--text-primary);
+        }
+
+        .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--cyan);
+            box-shadow: 0 0 10px var(--cyan), 0 0 20px rgba(6, 182, 212, 0.5);
         }
 
         /* Mobile menu toggle */
@@ -1570,46 +1587,69 @@
 
         // Parallax Scrolling Effect
         let ticking = false;
-        
+
         window.addEventListener('scroll', () => {
             if (!ticking) {
                 window.requestAnimationFrame(() => {
                     const scrolled = window.pageYOffset;
-                    
-                    // Parallax for profile photo
-                    const profilePhoto = document.querySelector('.profile-photo');
-                    if (profilePhoto) {
-                        const photoOffset = scrolled * 0.5;
-                        profilePhoto.style.transform = `translateY(${photoOffset}px)`;
-                    }
-                    
+
                     // Parallax for background blobs
                     const bg1 = document.querySelector('.parallax-bg-1');
                     const bg2 = document.querySelector('.parallax-bg-2');
                     const bg3 = document.querySelector('.parallax-bg-3');
-                    
+
                     if (bg1) bg1.style.transform = `translate(${scrolled * 0.1}px, ${scrolled * 0.15}px)`;
                     if (bg2) bg2.style.transform = `translate(${-scrolled * 0.08}px, ${scrolled * 0.12}px)`;
                     if (bg3) bg3.style.transform = `translate(${scrolled * 0.05}px, ${-scrolled * 0.1}px)`;
-                    
+
                     // Parallax for section backgrounds (subtle)
                     const sections = document.querySelectorAll('section');
                     sections.forEach((section, index) => {
                         const rect = section.getBoundingClientRect();
                         const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-                        
+
                         if (isVisible) {
                             const sectionScroll = (rect.top - window.innerHeight) * 0.3;
                             section.style.backgroundPosition = `center ${sectionScroll}px`;
                         }
                     });
-                    
+
+                    // Active navigation highlighting
+                    updateActiveNavLink();
+
                     ticking = false;
                 });
-                
+
                 ticking = true;
             }
         });
+
+        // Update active navigation link based on scroll position
+        function updateActiveNavLink() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            let currentSection = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+
+                if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Set initial active link
+        updateActiveNavLink();
 
         // Mobile menu toggle
         const menuToggle = document.getElementById('menuToggle');
